@@ -21,10 +21,13 @@ end
 
 def find_chess
 	image = MiniMagick::Image.open("public/screenshot.png")
-	# image = MiniMagick::Image.open("testcase/screenshot0.png")
+	# image = MiniMagick::Image.open("testcase/screenshot3.png")
 
 	image.combine_options do |o|
 		o.resize "50%"
+		o.fuzz "7%"
+		o.fill "white"
+		o.opaque.+ "rgb(50,50,90)"
 		o.canny "0x1+10%+20%"
 		o.colorspace "Gray"
 	end
@@ -38,12 +41,12 @@ def find_chess
 			# print pix if pix==255
 			if pix==255
 				s = []
-				s << search(pixels, row, col+1, 255, 1)
-				s << search(pixels, row, col-1, 255, 1)
-				s << search(pixels, row+105, col, 255, 1)
-				s << search(pixels, row+30, col, 255, 1)
-				s << search(pixels, row+15, col-15, 255, 1)
-				s << search(pixels, row+15, col+15, 255, 1)
+				s << search(pixels, row, col+1, 255, 2)
+				s << search(pixels, row, col-1, 255, 2)
+				s << search(pixels, row+105, col, 255, 2)
+				s << search(pixels, row+30, col, 255, 2)
+				s << search(pixels, row+15, col-15, 255, 2)
+				# s << search(pixels, row+15, col+15, 255, 2)
 				if s.all? { |e| e==true }
 					res_points << [col, row]
 					image.combine_options do |c|
@@ -57,7 +60,11 @@ def find_chess
 	end
 
 	begin
-		point = res_points[res_points.size/2]
+		point = res_points.
+			reduce{ |sum, n| sum[0]+=n[0]; sum[1]+=n[1]; sum }
+		point = point.collect{ |c| c/res_points.size}
+
+
 		point[1] += 98
 
 		x, y = point.collect{ |c| c*0.75 }
