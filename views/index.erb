@@ -5,10 +5,31 @@
 <script src="jquery-3.2.1.min.js"></script>
 <script src="/main.js?<%= rand %>" type="text/javascript" charset="utf-8" async defer></script>
 <style type="text/css" media="screen">
-	body{ text-align: center; }
+	/*body{ text-align: center; }*/
+	#container{
+		position: relative;
+		width: 405px;
+		margin: 0 auto;
+	}
+	#chess{
+		position: absolute;
+		width: 8px;
+		height: 8px;
+		background-color: red;
+		border-radius: 2px;
+	}
+	#clr-btn{
+		position: absolute;
+		right: 32px;
+		top: 32px;
+	}
 	.wait{ opacity: 0.5; }
 </style>
 <body>
-<img id="screenshot" src="screenshot.png" height="720px" alt="">
+	<div id="container">
+		<button id="clr-btn">clear</button>
+		<div id="chess"></div>
+		<img id="screenshot" src="screenshot.png" height="720px" alt="">
+	</div>
 </body>
 </html>

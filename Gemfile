@@ -7,4 +7,8 @@ git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
 gem "sinatra"
 gem "coffee-script"
-gem "therubyracer"
+
+# If you don't have nodeJS
+#gem "therubyracer"
+
+gem "mini_magick"

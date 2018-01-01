@@ -1,6 +1,12 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
+    execjs (2.7.0)
+    mini_magick (4.8.0)
     mustermann (1.0.1)
     rack (2.0.3)
     rack-protection (2.0.0)
@@ -16,6 +22,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  coffee-script
+  mini_magick
   sinatra
 
 BUNDLED WITH
